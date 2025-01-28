@@ -50,7 +50,7 @@ As described in detail in Homework 3 Course Objectives, you learn to implement d
 
  > Be sure to use exactly the names given in these instructions for files, functions, and classes, because the autograder will be expecting exactly those names.
 
-The declaration of class `String` and related functions is in a file named `string.hpp`, while the definitions of the `String` methods and related functions are in a file called `string.cpp`. The provided class `AllocationTracker` declaration is in `alloc.hpp`, and its definition is in `alloc.cpp`.
+The declaration of class `String` and related functions are in a file named `string.hpp`, while the definitions of the `String` methods and related functions are in a file called `string.cpp`. The provided class `AllocationTracker` declaration is in `alloc.hpp`, and its definition is in `alloc.cpp`.
 
 `standard_main.cpp` offers some initial basic tests for each interface function defined in your classes, and `student_gtests.cpp` contains your extensive testing of your functions. You may also reuse any part of **your own program** from Homework 3 (e.g., `string.cpp` and `standard_main.cpp`) to help you make incremental progress throughout this assignment.
 
@@ -58,7 +58,7 @@ The declaration of class `String` and related functions is in a file named `stri
 
 ## 1.1 string.hpp
 
-In a file named `string.hpp`, declare a `String` class which is implemented as a pointer to C-string. **Note that there are changes to class `String` from Homework 3, so be sure to start with the new `string.hpp` provided for here.** (For the remainder of this document, `string.hpp` refers to the new version you implement for Homework 4).
+In a file named `string.hpp`, declare a `String` class which is implemented as a pointer to C-string. **Note that there are changes to class `String` from Homework 3, so be sure to start with the new `string.hpp` provided here.** (For the remainder of this document, `string.hpp` refers to the new version you implement for Homework 4).
 
 Class `String `has only one data member named buf, which is a pointer to a C-string, which is an array of char.
 
@@ -76,7 +76,7 @@ Some of the methods work using the implementation from Homework 3 (assuming that
 
  > As before, do not use any of the `C str` functions (e.g. `std::strcmp()`, or `std::strcpy()`); reuse your functions written previously, or write new versions to implement dynamic allocation, as appropriate.
 
-**Two additional interface methods** transfer ownership from a dying String to another String:
+**Two additional interface methods** transfer ownership from a dying `String` to another `String`:
 
  - **The move constructor** (a third constructor for class `String`):  constructor for the new `String` being born, from a `String` that is about to die
  - **Move assignment:**  assignment into a `String`, from a `String` that is about to die
@@ -121,13 +121,13 @@ In Homework 4, we use this information to learn two things:
 
 Call and use your functions in the file `standard_main.cpp`, using `AllocationTracker` functions to report the number of heap allocations, following the [Steps of Development](#steps-of-incremental-development) below. Make the changes step by step, then report the allocations to see how each change reduces the number of unnecessary allocations.
 
-## 3 student_gtests.cpp:  A program to test each function in class String
+## 4 student_gtests.cpp:  A program to test each function in class String
 
 ![comic](/assets/3-1.png)
 
 Write a test program, `student_gtests.cpp`, to thoroughly test each static method defined in class `String`. You may reuse and adapt part or all of your tests from Homework 3 to help you make progress with `student_gtests`. Following the model of Homework 3, `student_gtests` must test nominal and boundary/edge cases. As in Homework 3, tests of non-static member functions should go in `string_gtests.cpp`.
 
-> Note: since there is a new static helper - `String::strdup` - in this homework, make sure to add a new test for this method if you're reusing your `student_gtests` from homework 3! Use the syntax:
+> Note: since there is a new static helper - `String::strdup` - in this homework, make sure to add a new test for this method if you're reusing your `student_gtests` from Homework 3! Use the syntax:
 
 ```cpp
 TEST(StringFunction, strdup) {
@@ -151,7 +151,7 @@ TEST(StringFunction, strdup) {
 
 > Following the same one-thing-at-a-time method given in Homework, choose one function (or the smallest possible number of dependent functions) to write at a time, then run (Step 4 below) until it works. Repeat steps 3 and 4 until all methods are written EXCEPT the move constructor and assignment.
 
-4. Run `standard_main`, and `student_gtests`, with the `sanitizers`. **The C++ compiler cannot catch memory errors for you. The sanitizers help you by catching your errors and reporting them to you. Carefully read the error messages printed by them to see if you can isolate which function was running when the error was detected. Focus your debugging effort on that function.**
+4. Run `standard_main`, and `student_gtests` with the `sanitizers`. **The C++ compiler cannot catch memory errors for you. The sanitizers help you by catching your errors and reporting them to you. Carefully read the error messages printed by them to see if you can isolate which function was running when the error was detected. Focus your debugging effort on that function.**
 
  - The `sanitizers` will catch many kinds of errors:
    - accessing memory that has not been initialized
