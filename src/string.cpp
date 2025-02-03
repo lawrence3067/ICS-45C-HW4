@@ -199,7 +199,7 @@ char* String::strcat(char *dest, const char *src)
 {
     int length_dest = strlen(dest);
 
-    char* temp = new char[strlen(src) + 1]{};
+    char* temp = new char[length_dest + 1]{};
     strcpy(temp, dest);
 
     delete[] dest;
@@ -222,7 +222,7 @@ char* String::strncat(char *dest, const char *src, int n)
     int length_dest = strlen(dest);
     int length_src = strlen(src);
 
-    char* temp = new char[strlen(src) + 1];
+    char* temp = new char[strlen(dest) + 1];
     strcpy(temp, dest);
 
     delete[] dest;
