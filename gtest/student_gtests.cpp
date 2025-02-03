@@ -43,7 +43,6 @@ TEST(StringFunction, strcat) {
 
     char first[10]{"Hello"};
     char second[10]{" World!"};
-    String s{"Hello"};
 
     EXPECT_STREQ(String::strcat(result, first), "yesHello");
     EXPECT_STREQ(String::strcat(result, second), "yesHello World!");
@@ -114,7 +113,6 @@ TEST(StringFunction, strstr) {
     EXPECT_STREQ(String::strstr(first, "Hello"), "Hellolo");
     EXPECT_STREQ(String::strstr(first, "lH"), "lHellHellolo");
     EXPECT_STREQ(String::strstr(second, "abababab"), "ababababab");
-    EXPECT_FALSE(String::strstr(first, "lH") == "HelHellHello");
     EXPECT_EQ(String::strstr(first, tester), nullptr);
     EXPECT_EQ(String::strstr(first, ""), first);
     EXPECT_EQ(String::strstr(third, tester), nullptr);
