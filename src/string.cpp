@@ -203,21 +203,17 @@ char* String::strcat(char *dest, const char *src)
     if (length_src == 0)
         return dest;
 
-    char* temp = new char[length_dest + 1]{};
+    char* temp = new char[length_dest + length_src + 1]{};
     strcpy(temp, dest);
 
-    delete[] dest;
-    dest = new char[length_dest + length_src + 1]{};
-
     int i = 0;
-    for(int j = 0; temp[j] != '\0'; j++)
-        dest[j] = temp[j];
     for( ; src[i] != '\0'; i++)
         dest[length_dest + i] = src[i];
 
     dest[length_dest + i] = '\0';
 
-    delete[] temp;
+    // delete[] dest;
+    dest = temp;
     return dest;
 }
 
@@ -232,7 +228,7 @@ char* String::strncat(char *dest, const char *src, int n)
     char* temp = new char[strlen(dest) + 1];
     strcpy(temp, dest);
 
-    delete[] dest;
+    // delete[] dest;
     if (n > length_src)
         dest = new char[length_dest + length_src + 1]{};
     else
