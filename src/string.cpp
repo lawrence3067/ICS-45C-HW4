@@ -41,7 +41,6 @@ String& String::operator=(String &&s)
     if (this == &s)
         return *this;
 
-    delete[] buf;
     swap(s);
     return *this;
 }
