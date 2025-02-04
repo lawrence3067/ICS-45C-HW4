@@ -199,6 +199,9 @@ char* String::strcat(char *dest, const char *src)
 {
     int length_dest = strlen(dest);
 
+    if (strlen(src) == 0)
+        return dest;
+
     char* temp = new char[length_dest + 1]{};
     strcpy(temp, dest);
 
@@ -221,6 +224,9 @@ char* String::strncat(char *dest, const char *src, int n)
 {
     int length_dest = strlen(dest);
     int length_src = strlen(src);
+
+    if (length_src == 0 || n == 0)
+        return dest;
 
     char* temp = new char[strlen(dest) + 1];
     strcpy(temp, dest);
