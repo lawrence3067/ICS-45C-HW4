@@ -24,8 +24,8 @@ TEST(StringFunction, strcpy) {
 }
 
 TEST(StringFunction, strdup) {
-    EXPECT_EQ(String::strdup("jello"), "jello");
-    EXPECT_EQ(String::strdup(""), "");
+    EXPECT_EQ(*String::strdup("jello"), "jello");
+    EXPECT_EQ(*String::strdup(""), "");
 }
 
 TEST(StringFunction, strncpy) {
