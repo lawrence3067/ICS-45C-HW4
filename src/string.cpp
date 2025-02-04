@@ -10,10 +10,10 @@ String::String(const char *s)
 String::String(const String &s)
     : buf(strdup(s.buf)) {}
 
-String::String(String&& s)
-{
-    swap(s);
-}
+// String::String(String&& s)
+// {
+//     swap(s);
+// }
 
 String::String(int length)
     : buf(new char[length + 1]) {}
@@ -25,7 +25,7 @@ String::~String()
 }
 
 //class function definitions
-String& String::operator=(String s)
+String& String::operator=(const String &s)
 {
     if (this == &s)
         return *this;
@@ -35,13 +35,13 @@ String& String::operator=(String s)
     return *this;
 }
 
-String& String::operator=(String &&s)
-{
-    delete[] buf;
-    buf = s.buf;
-    s.buf = nullptr;
-    return *this;
-}
+// String& String::operator=(String &&s)
+// {
+//     delete[] buf;
+//     buf = s.buf;
+//     s.buf = nullptr;
+//     return *this;
+// }
 
 char& String::operator[](int index)
 {
@@ -353,3 +353,6 @@ std::istream &operator>>(std::istream &in, String &s)
     s.read(in);
     return in;
 }
+
+int main()
+{}

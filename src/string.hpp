@@ -18,10 +18,11 @@ public:
     void swap(String &s);
 
     // assignment operator from one string, s, to this string
-    String &operator=(String s);
+    String &operator=(const String &s);
 
     // assign to this string by moving from string s
     String &operator=(String &&s);
+
     // allow indexing this string with notation s[i]
     char &operator[](int index);
 
