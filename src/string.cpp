@@ -163,11 +163,9 @@ bool String::operator<=(String s) const
 
 String String::operator+(String s) const
 {
-    char* temp = new char[strlen(buf) + strlen(s.buf) + 1]{};
-    strcat(temp, buf);
-    strcat(temp, s.buf);
-    String new_string;
-    new_string.buf = temp;
+    String new_string(strlen(buf) + strlen(s.buf) + 1);
+    strcat(new_string.buf, buf);
+    strcat(new_string.buf, s.buf);
     return new_string;
 }
 
