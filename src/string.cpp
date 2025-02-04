@@ -92,7 +92,7 @@ int String::indexOf(char c) const
     return ((status >= 0 && status < strlen(buf)) ? status : -1);
 }
 
-int String::indexOf(String s) const
+int String::indexOf(const String &s) const
 {
     int status{static_cast<int>(strstr(buf, s.buf) - buf)};
     return ((status >= 0 && status < strlen(buf)) ? status : -1);
