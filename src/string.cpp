@@ -16,7 +16,7 @@ String::String(const String &s)
 // }
 
 String::String(int length)
-    : buf(new char[length + 1]) {}
+    : buf(new char[length + 1]{'\0'}) {}
 
 String::~String()
 {
@@ -163,7 +163,7 @@ bool String::operator<=(String s) const
 
 String String::operator+(String s) const
 {
-    String new_string(strlen(buf) + strlen(s.buf) + 1);
+    String new_string(strlen(buf) + strlen(s.buf));
     strcat(new_string.buf, buf);
     strcat(new_string.buf, s.buf);
     return new_string;
