@@ -143,15 +143,21 @@ bool String::operator<=(String s) const
 
 String String::operator+(String s) const
 {
-    String new_string(0);
-    strcat(new_string.buf, buf);
-    strcat(new_string.buf, s.buf);
+    char* temp = new char[strlen(buf) + strlen(s.buf) + 1]{};
+    strcat(temp, buf);
+    strcat(temp, s.buf);
+    String new_string;
+    new_string.buf = temp;
     return new_string;
 }
 
 String& String::operator+=(String s)
 {
-    strcat(buf, s.buf);
+    char* temp = new char[strlen(buf) + strlen(s.buf) + 1]{};
+    strcat(temp, buf);
+    strcat(temp, s.buf);
+    delete[] buf;
+    buf = temp;
     return *this;
 }
 
@@ -203,17 +209,11 @@ char* String::strcat(char *dest, const char *src)
     if (length_src == 0)
         return dest;
 
-    char* temp = new char[length_dest + length_src + 1]{};
-    strcpy(temp, dest);
-
     int i = 0;
     for( ; src[i] != '\0'; i++)
         dest[length_dest + i] = src[i];
 
     dest[length_dest + i] = '\0';
-
-    // delete[] dest;
-    dest = temp;
     return dest;
 }
 
@@ -225,18 +225,7 @@ char* String::strncat(char *dest, const char *src, int n)
     if (length_src == 0 || n == 0)
         return dest;
 
-    char* temp = new char[strlen(dest) + 1];
-    strcpy(temp, dest);
-
-    // delete[] dest;
-    if (n > length_src)
-        dest = new char[length_dest + length_src + 1]{};
-    else
-        dest = new char[length_dest + n + 1]{};
-
     int i = 0;
-    for(int j = 0; temp[j] != '\0'; j++)
-        dest[j] = temp[j];
     for( ; src[i] != '\0' && i < n; i++)
         dest[length_dest + i] = src[i];
 
