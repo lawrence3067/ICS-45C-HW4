@@ -353,6 +353,3 @@ std::istream &operator>>(std::istream &in, String &s)
     s.read(in);
     return in;
 }
-
-int main()
-{}
