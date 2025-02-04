@@ -10,6 +10,11 @@ String::String(const char *s)
 String::String(const String &s)
     : buf(strdup(s.buf)) {}
 
+String::String(String&& s)
+{
+    swap(s);
+}
+
 String::String(int length)
     : buf(new char[length + 1]) {}
 
@@ -27,6 +32,14 @@ String& String::operator=(String s)
 
     delete[] buf;
     buf = strdup(s.buf);
+    return *this;
+}
+
+String& String::operator=(String &&s)
+{
+    delete[] buf;
+    buf = s.buf;
+    s.buf = nullptr;
     return *this;
 }
 
@@ -48,6 +61,13 @@ const char& String::operator[](int index) const
         return buf[0];
     }
     return buf[index];
+}
+
+void String::swap(String& s)
+{
+    char* temp = s.buf;
+    s.buf = buf;
+    buf = temp;
 }
 
 int String::size() const
