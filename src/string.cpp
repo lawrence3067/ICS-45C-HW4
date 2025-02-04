@@ -10,10 +10,11 @@ String::String(const char *s)
 String::String(const String &s)
     : buf(strdup(s.buf)) {}
 
-// String::String(String&& s)
-// {
-//     swap(s);
-// }
+String::String(String&& s)
+    :buf(s.buf)
+{
+    s.buf = nullptr;
+}
 
 String::String(int length)
     : buf(new char[length + 1]{'\0'}) {}
@@ -35,13 +36,15 @@ String& String::operator=(const String &s)
     return *this;
 }
 
-// String& String::operator=(String &&s)
-// {
-//     delete[] buf;
-//     buf = s.buf;
-//     s.buf = nullptr;
-//     return *this;
-// }
+String& String::operator=(String &&s)
+{
+    if (this == &s)
+        return *this;
+
+    delete[] buf;
+    swap(s);
+    return *this;
+}
 
 char& String::operator[](int index)
 {
@@ -77,7 +80,6 @@ int String::size() const
 
 String String::reverse() const
 {
-    
     String reversed_string(strlen(buf) + 1);
     reverse_cpy(reversed_string.buf, buf);
 
@@ -131,37 +133,37 @@ void String::read(std::istream &in)
 }
 
 //operator function overloads
-bool String::operator==(String s) const
+bool String::operator==(const String& s) const
 {
     return !strcmp(buf, s.buf);
 }
 
-bool String::operator!=(String s) const
+bool String::operator!=(const String& s) const
 {
     return strcmp(buf, s.buf);
 }
 
-bool String::operator>(String s) const
+bool String::operator>(const String& s) const
 {
     return (strcmp(buf, s.buf) > 0);
 }
 
-bool String::operator<(String s) const
+bool String::operator<(const String& s) const
 {
     return (strcmp(buf, s.buf) < 0);
 }
 
-bool String::operator>=(String s) const
+bool String::operator>=(const String& s) const
 {
     return (strcmp(buf, s.buf) >= 0);
 }
 
-bool String::operator<=(String s) const
+bool String::operator<=(const String& s) const
 {
     return (strcmp(buf, s.buf) <= 0);
 }
 
-String String::operator+(String s) const
+String String::operator+(const String& s) const
 {
     String new_string(strlen(buf) + strlen(s.buf));
     strcat(new_string.buf, buf);
@@ -169,7 +171,7 @@ String String::operator+(String s) const
     return new_string;
 }
 
-String& String::operator+=(String s)
+String& String::operator+=(const String& s)
 {
     char* temp = new char[strlen(buf) + strlen(s.buf) + 1]{};
     strcat(temp, buf);

@@ -12,7 +12,7 @@ public:
     String(const String &s);
 
     // construct this string by moving from string s
-    // String(String &&s);
+    String(String &&s);
 
     // swap buf between this string and s using std::swap, explained later
     void swap(String &s);
@@ -21,7 +21,7 @@ public:
     String &operator=(const String &s);
 
     // assign to this string by moving from string s
-    // String &operator=(String &&s);
+    String &operator=(String &&s);
 
     // allow indexing this string with notation s[i]
     char &operator[](int index);
@@ -42,18 +42,18 @@ public:
     int indexOf(String s) const;
 
     // relational operators for comparing this strings to another string
-    bool operator==(String s) const;
-    bool operator!=(String s) const;
-    bool operator>(String s) const;
-    bool operator<(String s) const;
-    bool operator<=(String s) const;
-    bool operator>=(String s) const;
+    bool operator==(const String& s) const;
+    bool operator!=(const String& s) const;
+    bool operator>(const String& s) const;
+    bool operator<(const String& s) const;
+    bool operator<=(const String& s) const;
+    bool operator>=(const String& s) const;
 
     // concatenate this and s to form a return string
-    String operator+(String s) const;
+    String operator+(const String& s) const;
 
     // concatenate s onto the end of this string
-    String &operator+=(String s);
+    String &operator+=(const String& s);
 
     // print this string, hint: use operator << to send buf to out
     void print(std::ostream &out) const;
