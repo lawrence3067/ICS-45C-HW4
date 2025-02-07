@@ -79,7 +79,7 @@ int String::size() const
 
 String String::reverse() const
 {
-    String reversed_string(strlen(buf) + 1);
+    String reversed_string(strlen(buf));
     reverse_cpy(reversed_string.buf, buf);
 
     return reversed_string;
@@ -132,37 +132,37 @@ void String::read(std::istream &in)
 }
 
 //operator function overloads
-bool String::operator==(const String& s) const
+bool String::operator==(const String &s) const
 {
     return !strcmp(buf, s.buf);
 }
 
-bool String::operator!=(const String& s) const
+bool String::operator!=(const String &s) const
 {
     return strcmp(buf, s.buf);
 }
 
-bool String::operator>(const String& s) const
+bool String::operator>(const String &s) const
 {
     return (strcmp(buf, s.buf) > 0);
 }
 
-bool String::operator<(const String& s) const
+bool String::operator<(const String &s) const
 {
     return (strcmp(buf, s.buf) < 0);
 }
 
-bool String::operator>=(const String& s) const
+bool String::operator>=(const String &s) const
 {
     return (strcmp(buf, s.buf) >= 0);
 }
 
-bool String::operator<=(const String& s) const
+bool String::operator<=(const String &s) const
 {
     return (strcmp(buf, s.buf) <= 0);
 }
 
-String String::operator+(const String& s) const
+String String::operator+(const String &s) const
 {
     String new_string(strlen(buf) + strlen(s.buf));
     strcat(new_string.buf, buf);
@@ -170,9 +170,9 @@ String String::operator+(const String& s) const
     return new_string;
 }
 
-String& String::operator+=(const String& s)
+String& String::operator+=(const String &s)
 {
-    char* temp = new char[strlen(buf) + strlen(s.buf) + 1]{};
+    char* temp{new char[strlen(buf) + strlen(s.buf) + 1]{}};
     strcat(temp, buf);
     strcat(temp, s.buf);
     delete[] buf;

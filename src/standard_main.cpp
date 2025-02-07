@@ -6,12 +6,12 @@
 using namespace std;
 
 void run_tests() {
-    String firstString("First");
-    String secondString("Second");
-    String thirdString(firstString);
-    String fourthString("Fourth");
-    String fifthString = String();
-    cout << "+: " << firstString + secondString << endl;
+    String firstString("First"); //2 allocations
+    String secondString("Second"); //1 allocation
+    String thirdString(firstString); //1 allocation
+    String fourthString("Fourth"); //2 allocations
+    String fifthString = String(); //2 allocations
+    cout << "+: " << firstString + secondString << endl; //3 allocations with line below
     cout << "+=: " << (firstString += secondString) << endl;
     cout << "indexOf(String): " << firstString.indexOf(secondString) << endl;
     cout << "indexOf(char): " << firstString.indexOf('t') << endl;
@@ -32,7 +32,7 @@ void run_tests() {
     cout << "[]: " << fifthString[0] << endl;
     cout << "!=: " << (thirdString != thirdString) << endl;
     cout << "Enter a test string: ";
-    cin >> firstString;
+    cin >> firstString; //11 allocations
     cout << firstString << endl;
     cout << (firstString < secondString) << endl;
     cout << (firstString <= thirdString) << endl;
